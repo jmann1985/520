@@ -30,17 +30,20 @@ set.seed(7)
 # Read the data from the csv file
 # DERBY dataset with 33 columns
 # This portion never works for me, so I just import the dataset manually 
+# So where it says 33 columns, i assume the following times we use 33 should be 58 since spambase has 58 -David
 
 # load the data
 # calculate correlation matrix
 # See library https://www.rdocumentation.org/packages/caret/versions/6.0-93/topics/findCorrelation
 spambase$x <- NULL
+# correlationMatrix <- cor(spambase[,1:58])
+# using the 1:58 only works after you make 'nonspam and spam'numberic
 correlationMatrix <- cor(spambase[,1:33])
 # summarize the correlation matrix
 print(correlationMatrix)
 
 
-#%%%%%%%%%%%%%%%%%%%%%%%%%%% un-comment lines 43-47when using spambase dataset %%%%%%%%%%%%%%%%%%%%%%%%%
+#%%%%%%%%%%%%%%%%%%%%%%%%%%% un-comment lines 48-51 when using spambase dataset %%%%%%%%%%%%%%%%%%%%%%%%%
 # change type to numerical (0 for nonspam and 1 for spam)
 spambase[spambase =='nonspam'] <- as.numeric(0)    
 spambase[spambase =='spam'] <- as.numeric(1)
@@ -88,6 +91,8 @@ library(caret)
 control <- rfeControl(functions=rfFuncs, method="cv", number=10)
 
 # run the RFE algorithm
+# results <- rfe(spambase[,1:57], spambase[,58], sizes=c(1:57), rfeControl=control) still not exactly sure on these numbers
+# I know derby has classifiers in both row 32 and 33 (bug = T/F, and ref = T/F) so maybe this needs tweaked
 results <- rfe(spambase[,1:31], spambase[,32], sizes=c(1:31), rfeControl=control)
 
 # summarize the results
