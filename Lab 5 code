@@ -45,11 +45,11 @@ spambase$type = as.numeric(spambase$type)
 str(spambase)
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-# correlationMatrix <- cor(spambase[,1:58])
+correlationMatrix <- cor(spambase[,1:58])
 # using the 1:58 only works after you make 'nonspam and spam' numeric, hence rearranging the code
-correlationMatrix <- cor(spambase[,1:33])
 # summarize the correlation matrix
 print(correlationMatrix)
+View (correlationMatrix)
 
 
 #get correlation matrix - representation 1
@@ -94,7 +94,7 @@ control <- rfeControl(functions=rfFuncs, method="cv", number=10)
 # run the RFE algorithm
 # results <- rfe(spambase[,1:57], spambase[,58], sizes=c(1:57), rfeControl=control) still not exactly sure on these numbers
 # I know derby has classifiers in both row 32 and 33 (bug = T/F, and ref = T/F) so maybe this needs tweaked
-results <- rfe(spambase[,1:31], spambase[,32], sizes=c(1:31), rfeControl=control)
+results <- rfe(spambase[,1:57], spambase[,58], sizes=c(1:57), rfeControl=control)
 
 # summarize the results
 # this will take a hot minute
