@@ -36,20 +36,21 @@ set.seed(7)
 # calculate correlation matrix
 # See library https://www.rdocumentation.org/packages/caret/versions/6.0-93/topics/findCorrelation
 spambase$x <- NULL
-# correlationMatrix <- cor(spambase[,1:58])
-# using the 1:58 only works after you make 'nonspam and spam'numberic
-correlationMatrix <- cor(spambase[,1:33])
-# summarize the correlation matrix
-print(correlationMatrix)
 
-
-#%%%%%%%%%%%%%%%%%%%%%%%%%%% un-comment lines 48-51 when using spambase dataset %%%%%%%%%%%%%%%%%%%%%%%%%
+#%%%%%%%%%%%%%%%%%%%%%%%%%%% un-comment lines 42-45 when using spambase dataset %%%%%%%%%%%%%%%%%%%%%%%%%
 # change type to numerical (0 for nonspam and 1 for spam)
 spambase[spambase =='nonspam'] <- as.numeric(0)    
 spambase[spambase =='spam'] <- as.numeric(1)
 spambase$type = as.numeric(spambase$type) 
 str(spambase)
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+# correlationMatrix <- cor(spambase[,1:58])
+# using the 1:58 only works after you make 'nonspam and spam' numeric, hence rearranging the code
+correlationMatrix <- cor(spambase[,1:33])
+# summarize the correlation matrix
+print(correlationMatrix)
+
 
 #get correlation matrix - representation 1
 visCorMatrix1 <- corrplot(cor(spambase))
