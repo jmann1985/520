@@ -111,8 +111,8 @@ set.seed(7)
 trainIndex8 <- createDataPartition(step8subset$type, p=0.7, list = FALSE)
 Train8 <- step8subset[ trainIndex8, ]
 Test8 <- step8subset[ -trainIndex8, ]
-trainctrl <- trainControl(method = "cv", number = 10, verboseIter = TRUE)
-svm.modelstep8 <- train(type~., data = Train8, method = "svmRadial", tuneLength = 10, trControl = trainctrl, metric = "Accuracy")
+trainctrl8 <- trainControl(method = "cv", number = 10, verboseIter = TRUE)
+svm.modelstep8 <- train(type~., data = Train8, method = "svmRadial", tuneLength = 10, trControl = trainctrl8, metric = "Accuracy")
 svm.predictstep8 <- predict(svm.model, Test8)
 confusionMatrix(svm.predict, as.factor(Test8$type), mode = "prec_recall")
 
@@ -123,7 +123,7 @@ set.seed(7)
 trainIndex6 <- createDataPartition(step6subset$type, p=0.7, list = FALSE)
 Train6 <- step6subset[ trainIndex6, ]
 Test6 <- step6subset[ -trainIndex6, ]
-trainctrl <- trainControl(method = "cv", number = 10, verboseIter = TRUE)
-svm.modelstep6 <- train(type~., data = Train6, method = "svmRadial", tuneLength = 10, trControl = trainctrl, metric = "Accuracy")
+trainctrl6 <- trainControl(method = "cv", number = 10, verboseIter = TRUE)
+svm.modelstep6 <- train(type~., data = Train6, method = "svmRadial", tuneLength = 10, trControl = trainctrl6, metric = "Accuracy")
 svm.predictstep6 <- predict(svm.model, Test6)
 confusionMatrix(svm.predict, as.factor(Test6$type), mode = "prec_recall")
