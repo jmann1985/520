@@ -103,3 +103,27 @@ print(results)
 predictors(results)
 # plot the results
 plot(results, type=c("g", "o"))
+
+step8vars <- c("remove", "charExclamation", "hp", "charDollar","edu", "type")
+step8subset <- dataset[step8vars]
+step8subset$type = as.factor(step8subset$type)
+set.seed(7)
+trainIndex <- createDataPartition(step8subset$type, p=0.7, list = FALSE)
+Train8 <- step8subset[ trainIndex, ]
+Test8 <- step8subset[ -trainIndex, ]
+trainctrl <- trainControl(method = "cv", number = 10, verboseIter = TRUE)
+svm.modelstep8 <- train(type~., data = Train8, method = "svmRadial", tuneLength = 10, trControl = trainctrl, metric = "Accuracy")
+svm.predictstep8 <- predict(svm.model, Test8)
+confusionMatrix(svm.predict, as.factor(Test8$type), mode = "prec_recall")
+
+step6vars <- c("charExclamation", "your", "num000", "remove","charDollar", "you", "free", "business", "hp", "capitalTotal", "our", "receive", "hpl", "over", "order", "money", "capitalLong", "internet", "email", "all", "type")
+step6subset <- dataset[step6vars]
+step6subset$type = as.factor(step6subset$type)
+set.seed(7)
+trainIndex <- createDataPartition(step6subset$type, p=0.7, list = FALSE)
+Train6 <- step6subset[ trainIndex, ]
+Test6 <- step6subset[ -trainIndex, ]
+trainctrl <- trainControl(method = "cv", number = 10, verboseIter = TRUE)
+svm.modelstep6 <- train(type~., data = Train6, method = "svmRadial", tuneLength = 10, trControl = trainctrl, metric = "Accuracy")
+svm.predictstep6 <- predict(svm.model, Test6)
+confusionMatrix(svm.predict, as.factor(Test6$type), mode = "prec_recall")
