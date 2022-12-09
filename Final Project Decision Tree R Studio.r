@@ -7,7 +7,7 @@ treeplot <- rpart.plot(treemodel)
 treemodel$variable.importance
 Prediction <- predict(treemodel, Test, type = 'class')
 Prediction
-Confmatrix <- Table(Test$MonkeyPox, Prediction)
+Confmatrix <- table(Test$MonkeyPox, Prediction)
 Confmatrix
 Acc <- (sum(diag(Confmatrix)) / sum(Confmatrix)*100)
 Acc
