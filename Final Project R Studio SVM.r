@@ -1,3 +1,6 @@
+library(caret)
+Library(e1071)
+
 set.seed(69)
 trainIndex <- createDataPartition(MonkeyPox$MonkeyPox, p=0.8, list = FALSE)
 Train <- MonkeyPox[ trainIndex, ]
